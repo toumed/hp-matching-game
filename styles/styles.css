@@ -1,0 +1,295 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+/* CSS Reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Michael Whyte Resets */
+
+main {
+	display: block;
+}
+
+* {
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;	
+}
+
+/* End CSS Reset */
+
+/* Header Styles */
+
+body {
+	background-image: url(../images/dark-clouds.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+h1 {
+	font-family: 'Amatic SC', cursive;
+	font-size: 4rem;
+	text-align: center;
+	color: gold;
+	text-shadow: 3px 3px rgb(0, 0, 0);
+	margin-bottom: 30px;
+	margin-top: 20px;
+}
+
+
+
+.output-turns,
+.output-matched {
+	position: absolute;
+	width: 180px;
+	height: 107px;
+	padding: 15px;
+	top: 31px;
+}
+
+.output-turns {
+	left: 30px;	
+}
+
+.output-matched {
+	right: 30px;	
+}
+
+.output-turns h3,
+.output-matched h3 {
+	text-align: center;
+	font-size: 1.5rem;
+	margin-bottom: 15px;
+	font-family: 'Amatic SC', cursive;
+	color: gold;
+	text-shadow: 2px 2px rgb(0, 0, 0);
+}
+
+.output-turns p,
+.output-matched p {
+	text-align: center;
+	font-size: 1.8rem;
+	font-family: 'Amatic SC', cursive;
+	color: gold;
+}
+
+.btn-play-and-reset {
+	width: 60px;
+	display: block;
+	margin: 0 auto;
+	height: 35px;
+	color: gold;
+	font-family: 'Amatic SC', cursive;
+	font-size: 2rem;
+	background: transparent;
+	border: none;
+	text-shadow: 2px 2px rgb(0, 0, 0);
+	margin-bottom: 45px;
+	margin-top: 45px;
+	cursor: pointer;
+}
+
+.btn-play-and-reset:hover, 
+.btn-play-and-reset:focus {
+	color: rgba(255, 215, 0, 0.5);
+	outline: none;
+}
+	
+/* Game Board Styles */
+
+.hide {
+	display: none;	
+}
+
+.game-board {
+	width: 850px;
+	margin: 0 auto;
+}
+
+.row {
+	height: 279px;	
+	margin-bottom: 5px;
+}
+
+
+.col {
+	width: 200px;
+	height: 279px;
+	float: left;
+	perspective: 1000px;
+	margin-right: 5px;	
+}
+
+.row-01 .col:nth-of-type(odd) .card-front,
+.row-03 .col:nth-of-type(odd) .card-front,
+.row-02 .col:nth-of-type(even) .card-front,
+.row-04 .col:nth-of-type(even) .card-front,
+.row-01 .col:nth-of-type(odd) .card-back,
+.row-03 .col:nth-of-type(odd) .card-back,
+.row-02 .col:nth-of-type(even) .card-back,
+.row-04 .col:nth-of-type(even) .card-back {
+	background-color: rgb(0, 0, 0);	
+}
+
+.row-01 .col:nth-of-type(even) .card-front,
+.row-03 .col:nth-of-type(even) .card-front,
+.row-02 .col:nth-of-type(odd) .card-front,
+.row-04 .col:nth-of-type(odd) .card-front,
+.row-01 .col:nth-of-type(even) .card-back,
+.row-03 .col:nth-of-type(even) .card-back,
+.row-02 .col:nth-of-type(odd) .card-back,
+.row-04 .col:nth-of-type(odd) .card-back {
+	background-color: rgb(0, 0, 0);	
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: all 0.6s ease;
+}
+
+.card-front,
+.card-back {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-back {
+	transform: rotateY(180deg);
+}
+
+.col.flipped .card {
+	transform: rotateY(-180deg);
+}
+
+
+/* Loading Page Styles */
+
+.transition {
+	background-image: url(../images/battle-of-hogwarts.jpg);
+	background-size: cover;
+	position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+	z-index: 1000;
+	opacity: 1;   
+}
+
+
+@keyframes fade {
+    100% {
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+.transition h1 {
+	margin-top: 400px;
+	cursor: pointer;	
+}
+
+.transition h1:hover {
+	color: rgba(255, 215, 0, 0.5);
+}
+
+
+.about {
+	color:gold;
+	font-family: 'Amatic SC', cursive;
+	font-size: 25px;
+	text-align: center;
+	text-shadow: 3px 3px rgb(0, 0, 0);
+	background-color: rgba(95, 30, 30, 0.4);
+	padding: 10px;
+	width: 700px;
+	margin-left: 25%;
+}
+
+
+/* Audio Styles */
+
+.magic {
+	font-family: 'Amatic SC', cursive;
+	font-size: 1.5rem;
+	cursor: pointer;
+	position: fixed;
+	top: 95%;
+	left: 90%;
+	color: gold;
+	text-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+.magic:hover{
+	color: rgba(255, 215, 0, 0.5);
+}
+
+/* Footer Styles */
+
+footer{
+	font-family:'Amatic SC', cursive;
+	top: 95%;
+	left: 3%;
+	position: fixed;	
+	color: gold;
+	text-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+
